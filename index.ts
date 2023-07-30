@@ -128,7 +128,7 @@ client.once("ready", () => {
   }
 
   // Check the server status every 10 seconds
-  setInterval(checkServerStatus, 10000);
+  setInterval(checkServerStatus, 300000);
 });
 
 // Log in to Discord with your client's token
