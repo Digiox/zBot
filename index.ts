@@ -103,7 +103,7 @@ client.once("ready", () => {
   log(`Ready! Logged in as ${client.user?.tag}`);
 
   // Update the category name every 5 seconds
-  setInterval(updateCategoryName, 10000);
+  setInterval(updateCategoryName, 300000);
 
   // Function to check the server status and send messages if it changes
   function checkServerStatus() {
@@ -128,7 +128,7 @@ client.once("ready", () => {
   }
 
   // Check the server status every 10 seconds
-  setInterval(checkServerStatus, 300000);
+  setInterval(checkServerStatus, 10000);
 });
 
 // Log in to Discord with your client's token
