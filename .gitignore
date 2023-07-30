@@ -1,0 +1,24 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# macOS
+.DS_Store
+
+# Editor / IDE specific
+.vscode/
+.idea/
+
+# Environment variables
+.env
+
+# Build output
+dist/
+
+# TypeScript build output
+*.js
+*.js.map
+
+# Configuration file
+config.json
