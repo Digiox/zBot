@@ -7,11 +7,13 @@ import updateStatus from './src/functions/automated/updateStatus';
 import setRemainingTimeBeforeBloodMoon from './src/functions/automated/setRemainingTimeBeforeBloodMoon.js';
 import setActualTime from './src/functions/automated/setActualTime';
 import minutesToDays from './src/functions/minutesToDays';
+import setAccurateTimeOfBM from './src/functions/automated/setAccurateTimeOfBM';
 
 const client = new Client({ intents: [IntentsBitField.Flags.Guilds] });
 let lastStatus: boolean | null = null;
 let lastRemainingTime: number | null = null;
 let lastTimeResult: string | null = null;
+let lastMBDay: number | null = null
 
 
 async function updateCategoryName() {
@@ -68,6 +70,12 @@ async function updateCategoryName() {
 
     // Implement actions on discord server here
 
+    if (lastMBDay !== nextBloodMoonDay) {
+      setAccurateTimeOfBM(nextBloodMoonDay, client)
+    }else {
+      log("Actual BM day has not been changed");
+    }
+
     if (lastRemainingTime !== days) {
       lastRemainingTime = days
       await setRemainingTimeBeforeBloodMoon(client, days)
@@ -103,7 +111,7 @@ client.once("ready", () => {
   log(`Ready! Logged in as ${client.user?.tag}`);
 
   // Update the category name every 5 seconds
-  setInterval(updateCategoryName, 300000);
+  setInterval(updateCategoryName, 10000);
 
   // Function to check the server status and send messages if it changes
   function checkServerStatus() {

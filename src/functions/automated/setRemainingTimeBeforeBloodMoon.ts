@@ -3,7 +3,10 @@ import {  time_display_channel_prefix, time_display_channel_suffix, remaining_ti
 import log from "../log";
 
 export default async (client: any, days: number) => {
-  console.log("Is function called");
+  if (!remaining_time_before_BM) {
+    log("WARNING: remaining_time_before_BM is not defined, the time before the blood moon will not display on your discord server")
+    return;
+  }
 
   try {
     const remainingTimeCategory = await client.channels.fetch(remaining_time_before_BM) as TextChannel;

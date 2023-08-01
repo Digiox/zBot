@@ -3,6 +3,10 @@ import { actual_time_channel_prefix, time_display_category_id } from "../../../c
 import log from "../log";
 
 export default async (client: Client, time: string) => {
+  if (!time_display_category_id) {
+    log("WARNING: time_display_category_id is not defined, the actual time will not display on your discord server")
+    return;
+  }
   try {
     const timeDisplayCategory = await client.channels.fetch(time_display_category_id) as TextChannel;
 
